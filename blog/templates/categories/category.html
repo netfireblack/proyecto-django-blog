@@ -1,0 +1,17 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}
+    {{category.name}}
+{% endblock %}
+
+{% block content %}
+    <h1 class="title">{{category.name}}</h1>
+    <p>{{category.description}}</p>
+
+    {% comment %} 
+    Esto funciona porque existe una relacion inversa de ManyToManyField(Muchos a Muchos)
+    desde el modelo Category hacia el modelo Article y con el article_set.all es posible
+    obtener todos los articulos que tienen relacion con una categoria en concreto
+    {% endcomment %}
+    {% include 'articles/articles.html' with articles=category.articles.all %}
+{% endblock %}
